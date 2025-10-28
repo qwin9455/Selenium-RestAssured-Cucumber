@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CucumberSuite" parallel="methods" thread-count="2">
+    <test name="WebTests">
+        <classes>
+            <class name="com.nsw.revenue.runners.WebTests"/>
+        </classes>
+    </test>
+    <test name="ApiTests">
+        <classes>
+            <class name="com.nsw.revenue.runners.ApiTests"/>
+        </classes>
+    </test>
+</suite>
