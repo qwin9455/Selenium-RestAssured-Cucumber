@@ -1,13 +1,16 @@
 package com.nsw.revenue.drivers;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
 
 public class DriverManagerFactory {
 
-    private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<RemoteWebDriver> driverThreadLocal = new ThreadLocal<>();
 
-    public static WebDriver getDriver(String browserType) {
-        WebDriver driver = driverThreadLocal.get();
+    public static RemoteWebDriver getDriver(String browserType) throws MalformedURLException {
+        RemoteWebDriver driver = driverThreadLocal.get();
         if (driver == null) {
             DriverManager driverManager = createDriverManager(browserType);
             driver = driverManager.createDriver();
@@ -19,7 +22,6 @@ public class DriverManagerFactory {
     private static DriverManager createDriverManager(String browserType) {
         return switch (browserType.toLowerCase()) {
             case "chrome" -> new ChromeDriverManager();
-            case "firefox" -> new FirefoxDriverManager();
             default -> throw new IllegalArgumentException("Unsupported browser type: " + browserType);
         };
     }

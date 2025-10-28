@@ -1,16 +1,17 @@
 package com.nsw.revenue.utils;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class ScenarioUtil {
-    private WebDriver driver;
+    private RemoteWebDriver driver;
     private String url;
 
-    public WebDriver getDriver() {
+    public RemoteWebDriver getDriver() {
         return driver;
     }
 
-    public void setDriver(WebDriver driver) {
+    public void setDriver(RemoteWebDriver driver) {
         this.driver = driver;
     }
 

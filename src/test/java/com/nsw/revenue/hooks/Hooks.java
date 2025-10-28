@@ -6,6 +6,8 @@ import com.nsw.revenue.utils.ScenarioUtil;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
+import java.net.MalformedURLException;
+
 public class Hooks {
 
     private final ScenarioUtil scenarioUtil;
@@ -16,7 +18,11 @@ public class Hooks {
 
     @Before("@Web")
     public void setup() {
-        scenarioUtil.setDriver(DriverManagerFactory.getDriver(System.getProperty("browser")));
+        try {
+            scenarioUtil.setDriver(DriverManagerFactory.getDriver(System.getProperty("browser")));
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Before("@API")
